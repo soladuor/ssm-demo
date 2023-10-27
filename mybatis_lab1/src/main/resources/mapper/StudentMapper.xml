@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sola.mapper.StudentMapper">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        SELECT
+            id,
+            class_id,
+            student_name,
+            logo_url,
+            grade,
+            a_grade,
+            b_grade,
+            c_grade,
+            z_grade
+        FROM
+            students
+    </sql>
+
+    <!--查询所有-->
+    <select id="findAll" resultType="student">
+        <include refid="columns"/>
+        WHERE
+        is_deleted = 0
+    </select>
+
+    <!-- 增加 -->
+    <insert id="insert">
+        INSERT INTO
+            students(id, class_id, student_name, logo_url, grade, a_grade, b_grade, c_grade, z_grade)
+        VALUES
+            (#{id}, #{schoolClass.id}, #{studentName}, #{logoUrl}, #{grade}, #{aGrade}, #{bGrade}, #{cGrade}, #{zGrade})
+    </insert>
+
+    <resultMap id="stu_and_class" type="student">
+        <association property="schoolClass"
+                     select="com.sola.mapper.SchoolClassMapper.getById"
+                     column="{id=class_id}"/>
+    </resultMap>
+
+    <!-- 根据id查询 -->
+    <select id="getById" resultMap="stu_and_class">
+        <include refid="columns"/>
+        WHERE
+        id=#{id}
+    </select>
+
+    <!-- 修改信息 -->
+    <update id="update">
+        UPDATE students
+        <set>
+            <if test="schoolClass != null and schoolClass != '' ">
+                <if test="schoolClass.id != null and schoolClass.id != '' ">
+                    class_id = #{schoolClass.id},
+                </if>
+            </if>
+            <if test="studentName != null and studentName != '' ">
+                student_name = #{studentName},
+            </if>
+            <if test="logoUrl != null and logoUrl != '' ">
+                logo_url = #{logoUrl},
+            </if>
+            <if test="grade != null and grade != '' ">
+                grade = #{grade},
+            </if>
+            <if test="aGrade != null and aGrade != '' ">
+                a_grade = #{aGrade},
+            </if>
+            <if test="bGrade != null and bGrade != '' ">
+                b_grade = #{bGrade},
+            </if>
+            <if test="cGrade != null and cGrade != '' ">
+                c_grade = #{cGrade},
+            </if>
+            <if test="zGrade != null and zGrade != '' ">
+                z_grade = #{zGrade},
+            </if>
+            update_time = now()
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除信息，由于数据库中写了更新时自动修改“更新时间”字段，所以update_time = NOW()其实可以不用写 -->
+    <update id="delete">
+        UPDATE students
+        SET
+            is_deleted  = 1,
+            update_time = NOW()
+        WHERE
+            id = #{id}
+    </update>
+
+    <!-- 分页查询（注：模糊查询的 % 周围得用双引号） -->
+    <select id="findPage" resultMap="stu_and_class">
+        <include refid="columns"/>
+        <where>
+            <if test="id != null and id != '' ">
+                and id like "%"#{id}"%"
+            </if>
+            <if test="classId != null and classId != '' ">
+                and class_id = #{classId}
+            </if>
+            <if test="studentName != null and studentName != '' ">
+                and student_name like "%"#{studentName}"%"
+            </if>
+            <if test="logoUrl != null and logoUrl != '' ">
+                and logo_url like "%"#{logoUrl}"%"
+            </if>
+            <if test="grade != null and grade != '' ">
+                and grade = #{grade}
+            </if>
+            <if test="aGrade != null and aGrade != '' ">
+                and a_grade = #{aGrade}
+            </if>
+            <if test="bGrade != null and bGrade != '' ">
+                and b_grade = #{bGrade}
+            </if>
+            <if test="cGrade != null and cGrade != '' ">
+                and c_grade = #{cGrade}
+            </if>
+            <if test="zGrade != null and zGrade != '' ">
+                and z_grade = #{zGrade}
+            </if>
+            and is_deleted = 0
+        </where>
+        ORDER BY id DESC
+    </select>
+</mapper>
