@@ -11,6 +11,8 @@ import com.sola.utils.MapperTools;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.List;
+
 public class TestMapping {
 
     // mapper
@@ -37,6 +39,12 @@ public class TestMapping {
     public void test02() {
         SchoolClass schoolClass = schoolClassMapper.getById_annotation(1);
         System.out.println("schoolClass = " + schoolClass);
+    }
+
+    @Test
+    public void test03() {
+        List<Student> studentList = studentMapper.getStuListByClassId_annotation(2);
+        System.out.println("studentList = " + studentList);
     }
 
 }

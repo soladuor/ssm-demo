@@ -30,6 +30,16 @@ public interface StudentMapper extends BaseMapper<Student> {
     })
     Student getById_annotation(String id);
 
+    // 注解实现多表联查式（关联查询）
+    @Select("SELECT students.id, class_id,class_name, student_name, logo_url, grade, a_grade, b_grade, c_grade, z_grade" +
+            " FROM students,school_classes" +
+            " WHERE students.class_id = school_classes.id AND class_id = #{id}")
+    @Results({
+            @Result(property = "schoolClass.id", column = "class_id"),
+            @Result(property = "schoolClass.className", column = "class_name")
+    })
+    List<Student> getStuListByClassId_annotation(Integer id);
+
     /**
      * 注解实现查询所有
      */
