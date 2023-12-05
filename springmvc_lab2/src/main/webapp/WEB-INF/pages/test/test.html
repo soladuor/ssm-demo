@@ -6,21 +6,23 @@
 </head>
 <body>
 
-<a th:href="@{/test/testMessage}">testMessage</a><br>
+<a th:href="@{/test/testMessage}">前往testMessage页面</a><br>
 
-<a th:href="@{/test/testJsonData}">testJsonData</a><br>
+<a th:href="@{/test/testJsonData}">测试返回对象转JSON</a><br>
 
-<button onclick="sendTest()">点击后到控制台查看</button>
+<button onclick="sendTest()">测试集合传参并返回，点击后到控制台查看</button>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+    // 测试集合传参并返回
     const sendTest = async () => {
-        await axios({
+        const data = await axios({
             method: "post",
             url: "test/testListData",
             headers: {
                 'Content-Type': 'application/json'
             },
+            // 生成的假数据
             data: [
                 {
                     "id": "20211677",
@@ -164,6 +166,7 @@
                 }
             ]
         })
+        console.log(data)
     }
 </script>
 </body>

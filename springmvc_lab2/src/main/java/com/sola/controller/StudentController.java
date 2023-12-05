@@ -8,15 +8,13 @@ import com.sola.service.SchoolClassService;
 import com.sola.service.StudentService;
 import com.sola.utils.result.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-@RestController
+@RequestMapping("/student")
+@RestController()
 public class StudentController extends BaseController {
 
     @Autowired
@@ -32,8 +30,8 @@ public class StudentController extends BaseController {
         return JSONResult.ok(page);
     }
 
-    @GetMapping("/getById")
-    public JSONResult getById(@RequestParam("id") String id) {
+    @GetMapping("/getById/{id}")
+    public JSONResult getById(@PathVariable("id") String id) {
         if (StringUtil.isEmpty(id)) {
             return JSONResult.fail("id不能为空");
         }
@@ -68,8 +66,8 @@ public class StudentController extends BaseController {
         return JSONResult.ok("影响行数: " + num + "行");
     }
 
-    @GetMapping("/delete")
-    public JSONResult delete(String id) {
+    @GetMapping("/delete/{id}")
+    public JSONResult delete(@PathVariable String id) {
         studentService.delete(id);
         return JSONResult.ok();
     }

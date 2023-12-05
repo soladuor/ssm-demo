@@ -55,4 +55,13 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+
+    // 静态资源加载问题的另一个解决方法（添加资源处理程序），对应注解 mvc:resources
+    // @Override
+    // public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    //     // 请求路径，资源路径
+    //     registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+    //     registry.addResourceHandler("/css/**").addResourceLocations("/css/");
+    //     registry.addResourceHandler("/img/**").addResourceLocations("/img/");
+    // }
 }

@@ -12,6 +12,9 @@ import java.util.List;
 @RequestMapping("/test")
 public class TestController {
 
+    /**
+     * 前往testMessage页面
+     */
     @GetMapping("/testMessage")
     public ModelAndView testMessage() {
         ModelAndView mav = new ModelAndView();
@@ -20,6 +23,9 @@ public class TestController {
         return mav;
     }
 
+    /**
+     * 测试返回对象转JSON
+     */
     @GetMapping("/testJsonData")
     @ResponseBody
     public JSONResult testObj() {
@@ -29,6 +35,9 @@ public class TestController {
         return JSONResult.ok(student);
     }
 
+    /**
+     * 测试集合传参并返回
+     */
     @PostMapping("/testListData")
     @ResponseBody
     public JSONResult test(@RequestBody List<Student> stuList) {
