@@ -1,0 +1,40 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--
+        id属性：设置一个唯一标识
+        targetRuntime属性值说明：
+            MyBatis3Simple：基本的增删改查
+            MyBatis3：带条件的增删改查【QBC风格（Query By Criteria）】
+
+        注：如果使用的是MySQL8，在jdbcConnection标签中还需要添加以下标签（1.3.7版本jar包测试没问题，不用添加）
+            <property name="nullCatalogMeansCurrent" value="true"/>
+    -->
+    <properties resource="db.properties"/>
+    <context id="simple" targetRuntime="MyBatis3Simple">
+        <!-- 设置连接数据库的相关信息 -->
+        <jdbcConnection driverClass="${db.driver}"
+                        connectionURL="${db.url}"
+                        userId="${db.username}"
+                        password="${db.password}"/>
+
+        <!-- 设置JavaBean的生成策略 -->
+        <javaModelGenerator targetPackage="com.sola.mbg.pojo" targetProject="src/main/java"/>
+
+        <!-- 设置SQL映射文件的生成策略 -->
+        <sqlMapGenerator targetPackage="mbg/mapper" targetProject="src/main/resources"/>
+
+        <!-- 设置Mapper接口的生成策略 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.sola.mbg.mapper" targetProject="src/main/java"/>
+
+        <!-- 逆向分析的表 -->
+        <!-- tableName设置为*号，可以对应所有表，此时不写domainObjectName -->
+        <!-- domainObjectName属性指定生成出来的实体类的类名 -->
+        <table tableName="file_comment" domainObjectName="FileComment"/>
+        <table tableName="file_message" domainObjectName="FileMessage"/>
+        <table tableName="file_space" domainObjectName="FileSpace"/>
+        <table tableName="file_type" domainObjectName="FileType"/>
+        <table tableName="file_user" domainObjectName="FileUser"/>
+    </context>
+</generatorConfiguration>
