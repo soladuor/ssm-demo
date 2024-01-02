@@ -40,17 +40,17 @@
         <!-- Spring 和 Mybatis 整合（共6个） -->
         <!-- Spring （2个） -->
         <!-- spring-orm（包含了spring-jdbc） -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>5.3.27</version>
-        </dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>org.springframework</groupId> -->
+        <!--     <artifactId>spring-orm</artifactId> -->
+        <!--     <version>5.3.27</version> -->
+        <!-- </dependency> -->
         <!-- AOP框架 -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
-            <version>5.3.27</version>
-        </dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>org.springframework</groupId> -->
+        <!--     <artifactId>spring-aspects</artifactId> -->
+        <!--     <version>5.3.27</version> -->
+        <!-- </dependency> -->
 
         <!-- Mybatis （4个） -->
         <!-- mySQL驱动 -->
@@ -72,11 +72,11 @@
             <version>3.5.11</version>
         </dependency>
         <!-- mybatis 和 spring的整合包 -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>2.0.7</version>
-        </dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>org.mybatis</groupId> -->
+        <!--     <artifactId>mybatis-spring</artifactId> -->
+        <!--     <version>2.0.7</version> -->
+        <!-- </dependency> -->
 
         <!-- 其他的jar包 -->
         <!-- Mybatis分页插件 -->
@@ -98,11 +98,11 @@
             <version>2.14.2</version>
         </dependency>
         <!-- commons-fileupload -->
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>1.4</version>
-        </dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>commons-fileupload</groupId> -->
+        <!--     <artifactId>commons-fileupload</artifactId> -->
+        <!--     <version>1.4</version> -->
+        <!-- </dependency> -->
         <!-- 日志 -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -113,6 +113,12 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
+        </dependency>
+        <!-- 其他JSON工具 -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
         </dependency>
 
     </dependencies>

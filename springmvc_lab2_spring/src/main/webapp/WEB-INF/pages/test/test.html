@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+</head>
+<body>
+
+<a th:href="@{/test/testMessage}">前往testMessage页面</a><br>
+
+<a th:href="@{/test/testJsonData}">测试返回对象转JSON</a><br>
+
+<button onclick="sendTest()">测试集合传参并返回，点击后到控制台查看</button>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    // 测试集合传参并返回
+    const sendTest = async () => {
+        const data = await axios({
+            method: "post",
+            url: "test/testListData",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // 生成的假数据
+            data: [
+                {
+                    "id": "20211677",
+                    "schoolClass": {
+                        "id": 2,
+                        "className": "2班"
+                    },
+                    "studentName": "test",
+                    "logoUrl": "img_head.png",
+                    "grade": 100,
+                    "aGrade": 100,
+                    "bGrade": 100,
+                    "cGrade": 100,
+                    "zGrade": 100
+                },
+                {
+                    "id": "11000",
+                    "schoolClass": {
+                        "id": 4,
+                        "className": "4班"
+                    },
+                    "studentName": "孔震南",
+                    "logoUrl": "img_918028.jpg",
+                    "grade": 2,
+                    "aGrade": 50,
+                    "bGrade": 9,
+                    "cGrade": 38,
+                    "zGrade": 19
+                },
+                {
+                    "id": "10999",
+                    "schoolClass": {
+                        "id": 2,
+                        "className": "2班"
+                    },
+                    "studentName": "于嘉伦",
+                    "logoUrl": "img_329125.jpg",
+                    "grade": 2,
+                    "aGrade": 10,
+                    "bGrade": 54,
+                    "cGrade": 60,
+                    "zGrade": 58
+                },
+                {
+                    "id": "10998",
+                    "schoolClass": {
+                        "id": 4,
+                        "className": "4班"
+                    },
+                    "studentName": "叶秀英",
+                    "logoUrl": "img_689721.png",
+                    "grade": 4,
+                    "aGrade": 44,
+                    "bGrade": 28,
+                    "cGrade": 25,
+                    "zGrade": 25
+                },
+                {
+                    "id": "10997",
+                    "schoolClass": {
+                        "id": 4,
+                        "className": "4班"
+                    },
+                    "studentName": "邓安琪",
+                    "logoUrl": "img_428559.jpg",
+                    "grade": 1,
+                    "aGrade": 22,
+                    "bGrade": 51,
+                    "cGrade": 14,
+                    "zGrade": 93
+                },
+                {
+                    "id": "10996",
+                    "schoolClass": {
+                        "id": 1,
+                        "className": "1班"
+                    },
+                    "studentName": "梁嘉伦",
+                    "logoUrl": "img_964515.jpg",
+                    "grade": 3,
+                    "aGrade": 55,
+                    "bGrade": 86,
+                    "cGrade": 16,
+                    "zGrade": 63
+                },
+                {
+                    "id": "10995",
+                    "schoolClass": {
+                        "id": 2,
+                        "className": "2班"
+                    },
+                    "studentName": "龚詩涵",
+                    "logoUrl": "img_709804.jpg",
+                    "grade": 3,
+                    "aGrade": 80,
+                    "bGrade": 61,
+                    "cGrade": 86,
+                    "zGrade": 55
+                },
+                {
+                    "id": "10994",
+                    "schoolClass": {
+                        "id": 1,
+                        "className": "1班"
+                    },
+                    "studentName": "范云熙",
+                    "logoUrl": "img_689825.jpg",
+                    "grade": 3,
+                    "aGrade": 34,
+                    "bGrade": 82,
+                    "cGrade": 5,
+                    "zGrade": 62
+                },
+                {
+                    "id": "10993",
+                    "schoolClass": {
+                        "id": 5,
+                        "className": "5班"
+                    },
+                    "studentName": "曾安琪",
+                    "logoUrl": "img_726402.png",
+                    "grade": 4,
+                    "aGrade": 15,
+                    "bGrade": 46,
+                    "cGrade": 81,
+                    "zGrade": 11
+                },
+                {
+                    "id": "10992",
+                    "schoolClass": {
+                        "id": 4,
+                        "className": "4班"
+                    },
+                    "studentName": "严睿",
+                    "logoUrl": "img_318289.jpg",
+                    "grade": 2,
+                    "aGrade": 49,
+                    "bGrade": 61,
+                    "cGrade": 40,
+                    "zGrade": 52
+                }
+            ]
+        })
+        console.log(data)
+    }
+</script>
+</body>
+</html>

@@ -3,10 +3,10 @@ package com.sola.controller;
 import com.sola.pojo.FileMessage;
 import com.sola.pojo.FileUser;
 import com.sola.service.FileService;
+import com.sola.service.impl.FileServiceImpl;
 import com.sola.utils.MySessionContext;
 import com.sola.utils.result.JSONResult;
 import com.sola.utils.result.ResultCodeEnum;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +26,7 @@ import java.util.UUID;
 @RequestMapping("/file")
 public class FileController {
 
-    @Autowired
-    private FileService fileService;
+    FileService fileService = new FileServiceImpl();
 
     // 获取文件列表
     @GetMapping

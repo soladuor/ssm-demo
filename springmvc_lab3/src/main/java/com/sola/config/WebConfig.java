@@ -10,7 +10,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
     // 指定spring的配置类
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{SpringConfig.class};
+        return new Class[0];
     }
 
     // 指定SpringMVC的配置类

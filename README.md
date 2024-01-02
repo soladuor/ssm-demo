@@ -16,6 +16,10 @@
 
 - 官网下载地址 https://archive.apache.org/dist/maven/maven-3/
 
+#### MySQL 8.0.31
+
+- 官网下载地址 https://downloads.mysql.com/archives/installer/
+
 ### 前端
 
 #### Node.js 16.15.0

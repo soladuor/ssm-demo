@@ -13,7 +13,7 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
-@ComponentScan(basePackages = "com.sola.controller")
+@ComponentScan(basePackages = {"com.sola.controller", "com.sola.service"})
 @EnableWebMvc // 装配，解决后续其他问题（view-controller、default-servlet-handler、Jackson消息转换器等23+种问题）
 public class SpringMvcConfig implements WebMvcConfigurer {
     // 模板解析器

@@ -6,7 +6,7 @@ import com.sola.mapper.StudentMapper;
 import com.sola.pojo.Student;
 import com.sola.service.StudentService;
 import com.sola.utils.CastUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.sola.utils.MapperTools;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -14,12 +14,9 @@ import java.util.Map;
 @Service
 public class StudentServiceImpl extends BaseServiceImpl<Student> implements StudentService {
 
-    @Autowired
-    private StudentMapper studentMapper;
-
     @Override
     protected StudentMapper getEntityMapper() {
-        return studentMapper;
+        return MapperTools.getMapper(StudentMapper.class);
     }
 
     @Override

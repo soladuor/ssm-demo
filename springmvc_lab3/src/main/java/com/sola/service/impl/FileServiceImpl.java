@@ -5,42 +5,37 @@ import com.sola.pojo.FileMessage;
 import com.sola.pojo.FileSpace;
 import com.sola.pojo.FileType;
 import com.sola.service.FileService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.sola.utils.MapperTools;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 
 @Service
-@Transactional
 public class FileServiceImpl implements FileService {
 
-    @Autowired
-    private FileMessageMapper fileMessageMapper;
+    FileMessageMapper fileMessageMapper() {
+        return MapperTools.getMapper(FileMessageMapper.class);
+    }
 
-    @Autowired
-    private FileUserMapper fileUserMapper;
+    FileTypeMapper fileTypeMapper() {
+        return MapperTools.getMapper(FileTypeMapper.class);
+    }
 
-    @Autowired
-    private FileCommentMapper fileCommentMapper;
-
-    @Autowired
-    private FileTypeMapper fileTypeMapper;
-
-    @Autowired
-    private FileSpaceMapper fileSpaceMapper;
+    FileSpaceMapper fileSpaceMapper() {
+        return MapperTools.getMapper(FileSpaceMapper.class);
+    }
 
     @Override
     public List<FileMessage> getAllFileList() {
-        return fileMessageMapper.selectAll();
+        return fileMessageMapper().selectAll();
     }
 
     @Override
     public void upload(String uuid, double size, Integer userId, String filename, String typeName) {
 
         // 当前用户的空间
-        FileSpace fileSpace = fileSpaceMapper.selectByUserId(userId);
+        FileSpace fileSpace = fileSpaceMapper().selectByUserId(userId);
         // 文件类型
         FileType fileTypeByName = getTypeByName(typeName);
         // 文件路径
@@ -60,44 +55,44 @@ public class FileServiceImpl implements FileService {
                 uuid, fileSpace.getId(), filename, filePath,
                 userId, new Date(), size, 0, fileTypeByName
         );
-        fileMessageMapper.insert(fileMessage);
+        fileMessageMapper().insert(fileMessage);
         // 占用空间
-        fileSpaceMapper.updateSpaceSize(fileMessage.getSpaceId(), -size);
+        fileSpaceMapper().updateSpaceSize(fileMessage.getSpaceId(), -size);
     }
 
     @Override
     public FileSpace getFileSpaceIdByUserId(Integer userId) {
-        return fileSpaceMapper.selectByUserId(userId);
+        return fileSpaceMapper().selectByUserId(userId);
     }
 
     @Override
     public FileType getTypeByName(String typeName) {
-        FileType type = fileTypeMapper.selectByTypeName(typeName);
+        FileType type = fileTypeMapper().selectByTypeName(typeName);
         // 没找到则新建
         if (type == null) {
             FileType fileType = new FileType(null, typeName);
-            fileTypeMapper.insert(fileType);
-            type = fileTypeMapper.selectByTypeName(typeName);
+            fileTypeMapper().insert(fileType);
+            type = fileTypeMapper().selectByTypeName(typeName);
         }
         return type;
     }
 
     @Override
     public FileMessage getFileMessageById(String fileId) {
-        return fileMessageMapper.selectByPrimaryKey(fileId);
+        return fileMessageMapper().selectByPrimaryKey(fileId);
     }
 
     @Override
     public void fileDownload(String fileId) {
-        fileMessageMapper.incDownCount(fileId);
+        fileMessageMapper().incDownCount(fileId);
     }
 
     @Override
     public int deleteFile(String fileId) {
         FileMessage fileMessage = getFileMessageById(fileId);
-        int i = fileMessageMapper.deleteByPrimaryKey(fileId);
+        int i = fileMessageMapper().deleteByPrimaryKey(fileId);
         // 释放空间
-        int j = fileSpaceMapper.updateSpaceSize(fileMessage.getSpaceId(), +fileMessage.getFileSize());
+        int j = fileSpaceMapper().updateSpaceSize(fileMessage.getSpaceId(), +fileMessage.getFileSize());
         if (i > 0 && j > 0) {
             return i + j;
         }

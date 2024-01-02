@@ -33,12 +33,12 @@ CREATE TABLE `school_classes`  (
 -- ----------------------------
 -- Records of school_classes
 -- ----------------------------
-INSERT INTO `school_classes` VALUES (1, '1班', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0);
-INSERT INTO `school_classes` VALUES (2, '2班', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0);
-INSERT INTO `school_classes` VALUES (3, '3班', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0);
-INSERT INTO `school_classes` VALUES (4, '4班', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0);
-INSERT INTO `school_classes` VALUES (5, '5班', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0);
-INSERT INTO `school_classes` VALUES (6, '6班', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0);
+INSERT INTO `school_classes` VALUES (1, '1班', '2023-10-25 21:04:35', '2023-10-25 21:04:35', 0);
+INSERT INTO `school_classes` VALUES (2, '2班', '2023-10-25 21:04:35', '2023-10-25 21:04:35', 0);
+INSERT INTO `school_classes` VALUES (3, '3班', '2023-10-25 21:04:35', '2023-10-25 21:04:35', 0);
+INSERT INTO `school_classes` VALUES (4, '4班', '2023-10-25 21:04:35', '2023-10-25 21:04:35', 0);
+INSERT INTO `school_classes` VALUES (5, '5班', '2023-10-25 21:04:35', '2023-10-25 21:04:35', 0);
+INSERT INTO `school_classes` VALUES (6, '6班', '2023-10-25 21:04:35', '2023-10-25 21:04:35', 0);
 
 -- ----------------------------
 -- Table structure for students

@@ -3,10 +3,9 @@ package com.sola.controller;
 import com.sola.pojo.FileSpace;
 import com.sola.pojo.FileUser;
 import com.sola.service.UserService;
+import com.sola.service.impl.UserServiceImpl;
 import com.sola.utils.MySessionContext;
 import com.sola.utils.result.JSONResult;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -17,11 +16,9 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
-@Transactional
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    UserService userService = new UserServiceImpl();
 
     /**
      * 注册

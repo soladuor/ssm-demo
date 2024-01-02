@@ -2,15 +2,16 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<!-- 此处原本为https，改为http是因为https会导致MybatisX插件无法识别typeAliases标签导致mapper文件实体类报红 -->
+
 <configuration>
+    <properties resource="db.properties"/>
 
     <!-- 文档: https://mybatis.org/mybatis-3/zh/configuration.html#setting -->
     <settings>
         <!-- 驼峰命名自动映射 （默认false） -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
         <!-- 全局开启懒加载：当开启时，所有关联对象都会延迟加载。（默认false）
-        特定关联关系中可通过设置 fetchType 属性来覆盖该项的开关状态（局部开关）。-->
+特定关联关系中可通过设置 fetchType 属性来覆盖该项的开关状态（局部开关）。-->
         <!--
         注：开启懒加载后，在进行实体类代理过程中会添加一个handler的属性，后导致Jackson解析JSON失败
         解决方法：可以在Jackson解析的类上加上@JsonIgnoreProperties(value = "handler")
@@ -19,11 +20,40 @@
         <!-- <setting name="lazyLoadingEnabled" value="true"/> -->
     </settings>
 
+    <!-- typeAliases: 类型别名可为 Java 类型设置一个缩写名字（仅用于 XML 配置，意在降低冗余的全限定类名书写） -->
+    <typeAliases>
+        <!-- 指定包下所有类定义别名（默认类名就是别名，同样不区分大小写【建议小写】） -->
+        <package name="com.sola.pojo"/>
+    </typeAliases>
+
     <plugins>
         <!-- com.github.pagehelper为PageHelper类所在包名 -->
         <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
     </plugins>
 
-    <!-- 其他的Spring管了 -->
+    <!-- environments: 设置数据库连接环境（可以设置多个，例如生产、测试环境） -->
+    <environments default="development">
+        <environment id="development">
+            <!-- 事务管理器 -->
+            <transactionManager type="JDBC"/>
+            <!-- 设置数据源 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${db.driver}"/>
+                <property name="url" value="${db.url}"/>
+                <property name="username" value="${db.username}"/>
+                <property name="password" value="${db.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- mappers: 映射器，告诉 MyBatis 到哪里去找映射文件 -->
+    <mappers>
+        <!-- 用相对于类路径的资源引用（常用且推荐） -->
+        <mapper resource="mapper/FileCommentMapper.xml"/>
+        <mapper resource="mapper/FileMessageMapper.xml"/>
+        <mapper resource="mapper/FileSpaceMapper.xml"/>
+        <mapper resource="mapper/FileTypeMapper.xml"/>
+        <mapper resource="mapper/FileUserMapper.xml"/>
+    </mappers>
 
 </configuration>

@@ -40,17 +40,17 @@
         <!-- Spring 和 Mybatis 整合（共6个） -->
         <!-- Spring （2个） -->
         <!-- spring-orm（包含了spring-jdbc） -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>5.3.27</version>
-        </dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>org.springframework</groupId> -->
+        <!--     <artifactId>spring-orm</artifactId> -->
+        <!--     <version>5.3.27</version> -->
+        <!-- </dependency> -->
         <!-- AOP框架 -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
-            <version>5.3.27</version>
-        </dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>org.springframework</groupId> -->
+        <!--     <artifactId>spring-aspects</artifactId> -->
+        <!--     <version>5.3.27</version> -->
+        <!-- </dependency> -->
 
         <!-- Mybatis （4个） -->
         <!-- mySQL驱动 -->
@@ -72,11 +72,11 @@
             <version>3.5.11</version>
         </dependency>
         <!-- mybatis 和 spring的整合包 -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>2.0.7</version>
-        </dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>org.mybatis</groupId> -->
+        <!--     <artifactId>mybatis-spring</artifactId> -->
+        <!--     <version>2.0.7</version> -->
+        <!-- </dependency> -->
 
         <!-- 其他的jar包 -->
         <!-- Mybatis分页插件 -->
@@ -115,17 +115,23 @@
             <version>1.2.3</version>
         </dependency>
         <!-- lombok插件 -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
-        </dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>org.projectlombok</groupId> -->
+        <!--     <artifactId>lombok</artifactId> -->
+        <!--     <version>1.18.30</version> -->
+        <!-- </dependency> -->
         <!-- 测试jar包 -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
             <scope>test</scope>
+        </dependency>
+        <!-- 其他JSON工具 -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
         </dependency>
     </dependencies>
 
